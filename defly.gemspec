@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "defly.gemspec",
     "lib/defly.rb",
     "lib/tracable.rb",
     "test/helper.rb",
