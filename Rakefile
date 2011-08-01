@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "defly"
   gem.homepage = "http://github.com/eggegg/defly"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Debug and trace tool for Ruby}
+  gem.description = %Q{Trace methods and instance variables with ease!}
   gem.email = "andrewliu33@gmail.com"
   gem.authors = ["Andrew Liu"]
   # dependencies defined in Gemfile
