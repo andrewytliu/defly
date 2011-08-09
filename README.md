@@ -13,6 +13,7 @@ Just `gem install defly`.
 ```ruby
 require 'defly'
 class Warrior
+  include Defly::Tracable
   attr_accessor :hp, :mp
 
   def sleep
