@@ -2,6 +2,11 @@
 
 A ruby debugging tool.  Easy way to trace function calls and variables.
 
+## Feature
+* Trace method calls: including arguments and return values
+* Trace variable changes
+* Showing source code when NoMethodError occurred
+
 ## Install
 
 Just `gem install defly`.
