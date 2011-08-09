@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrew Liu"]
-  s.date = %q{2011-08-01}
+  s.date = %q{2011-08-09}
   s.description = %q{Trace methods and instance variables with ease!}
   s.email = %q{andrewliu33@gmail.com}
   s.extra_rdoc_files = [
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "defly.gemspec",
     "lib/defly.rb",
     "lib/tracable.rb",
+    "lib/whinable.rb",
     "test/helper.rb",
     "test/test_defly.rb"
   ]
