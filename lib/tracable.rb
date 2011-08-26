@@ -72,8 +72,8 @@ module Defly
     end
     
     def untrace!
-      [:defly_check_var].concat(@__defly_methods).each do |m|
-        eigenclass.remove_method(m) if eigenclass.instance_methods.include? m
+      [:__defly_check_var].concat(@__defly_methods).each do |m|
+        eigenclass.send(:remove_method, m) if eigenclass.instance_methods.include? m
       end
     end
     
