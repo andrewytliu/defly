@@ -2,23 +2,24 @@
 
 A ruby debugging tool.  Easy way to trace function calls and variables.
 
-## Feature
-* Trace method calls: including arguments and return values
-* Trace variable changes
-* Showing source code when NoMethodError occurred
-
 ## Install
 
 Just `gem install defly`.
 
-## Sample Usage
+## Feature
+* Trace method calls: including arguments and return values
+* Trace variable changes
+* Showing source code when NoMethodError is thrown
+* Opening a shell when a particular error occurred
+
+## Tracing method and instance variables
 
 ### Input
 
 ```ruby
 require 'defly'
+
 class Warrior
-  include Defly::Tracable
   attr_accessor :hp, :mp
 
   def sleep
@@ -27,6 +28,7 @@ class Warrior
   end
 end
 
+Warrior.debug!
 Warrior.new.trace([:hp, :hp=, :mp, :mp=, :sleep], [:@hp, :@mp]) do |warrior|
   warrior.hp = 10
   warrior.mp = 20
@@ -37,29 +39,71 @@ end
 ### Output (Run on IRB)
 
     Tracing hp, hp=, mp, mp=, sleep on Warrior instance
-    Tracing @hp, @mp  on Warrior instance
-    <<<<< Warrior#hp=(10) # (irb):12:in `block in irb_binding'
+    Tracing @hp, @mp on Warrior instance
+    <<<<< Warrior#hp=(10) # (irb):14:in `block in irb_binding'
         @hp = 10 # undefined
         @mp = nil # undefined
     >>>>> 10
-    <<<<< Warrior#mp=(20) # (irb):13:in `block in irb_binding'
+    <<<<< Warrior#mp=(20) # (irb):15:in `block in irb_binding'
         @mp = 20 # undefined
     >>>>> 20
-    <<<<< Warrior#sleep() # (irb):14:in `block in irb_binding'
-        <<<<< Warrior#hp() # (irb):6:in `sleep'
+    <<<<< Warrior#sleep() # (irb):16:in `block in irb_binding'
+        <<<<< Warrior#hp() # (irb):7:in `sleep'
         >>>>> 10
-        <<<<< Warrior#hp=(20) # (irb):6:in `sleep'
+        <<<<< Warrior#hp=(20) # (irb):7:in `sleep'
             @hp = 20 # 10 -> 20
         >>>>> 20
-        <<<<< Warrior#mp() # (irb):7:in `sleep'
+        <<<<< Warrior#mp() # (irb):8:in `sleep'
         >>>>> 20
-        <<<<< Warrior#mp=(22) # (irb):7:in `sleep'
+        <<<<< Warrior#mp=(22) # (irb):8:in `sleep'
             @mp = 22 # 20 -> 22
         >>>>> 22
     >>>>> 22
+
+## Better Error Message
+
+### NoMethodError
+
+Showing the exact code and the position of the error.
+
+```ruby
+irb(main):001:0> require 'defly'
+=> true
+irb(main):002:0> require 'bug'
+NoMethodError: undefined method `is_annoying' for "debugging":String
+bug.rb:1> "debugging".<<is_annoying>>
+	from /Users/eggegg/bug.rb:1:in `<top (required)>'
+	...
+```
+
+## Inspecting error
+
+### Input
+
+```ruby
+class Rocket
+  def launch
+    @reason = "Bugs invasion"
+    raise "Engine Fail"
+  end
+end
+
+Rocket.debug!
+rocket = Rocket.new
+rocket.watch_error "Engine Fail"
+rocket.launch
+```
+
+### Output
+
+    >>>>> Error received:
+    "Engine Fail"
+    >>>>>
+    #<Rocket:0(0)>> @reason
+    => "Bugs invasion"
+    #<Rocket:0(0)>>
 
 ## Copyright
 
 Copyright (c) 2011 Andrew Liu. See LICENSE.txt for
 further details.
-
