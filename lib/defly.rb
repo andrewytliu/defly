@@ -1,6 +1,6 @@
-require 'tracable'
-require 'whinable'
-require 'inspectable'
+require 'defly/tracable'
+require 'defly/whinable'
+require 'defly/inspectable'
 
 module Defly
 end
