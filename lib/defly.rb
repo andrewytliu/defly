@@ -1,6 +1,7 @@
 require 'defly/tracable'
 require 'defly/whinable'
 require 'defly/inspectable'
+require 'defly/require_path'
 
 module Defly
 end
@@ -13,3 +14,4 @@ class Class
 end
 
 NoMethodError.send(:include, Defly::Whinable)
+send(:include, Defly::RequirePath)
