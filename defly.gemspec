@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{defly}
-  s.version = "0.2.0"
+  s.name = "defly"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrew Liu"]
-  s.date = %q{2011-08-26}
-  s.description = %q{Trace methods and instance variables with ease!}
-  s.email = %q{andrewliu33@gmail.com}
+  s.date = "2011-09-13"
+  s.description = "Debugging and tracing utilities for Ruby"
+  s.email = "andrewliu33@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
@@ -26,17 +26,18 @@ Gem::Specification.new do |s|
     "VERSION",
     "defly.gemspec",
     "lib/defly.rb",
-    "lib/inspectable.rb",
-    "lib/tracable.rb",
-    "lib/whinable.rb",
+    "lib/defly/inspectable.rb",
+    "lib/defly/require_path.rb",
+    "lib/defly/tracable.rb",
+    "lib/defly/whinable.rb",
     "test/helper.rb",
     "test/test_defly.rb"
   ]
-  s.homepage = %q{http://github.com/eggegg/defly}
+  s.homepage = "http://github.com/eggegg/defly"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{Debug and trace tool for Ruby}
+  s.rubygems_version = "1.8.10"
+  s.summary = "Debug and trace tool for Ruby"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
