@@ -1,6 +1,7 @@
 module Defly
   module RequirePath
     def require name, opts = {}
+      ret = super name
       require_path = nil
 
       if opts[:verbose]
@@ -20,7 +21,7 @@ module Defly
         end
       end
 
-      super name
+      ret
     end
   end
 end
