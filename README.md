@@ -11,6 +11,7 @@ Just `gem install defly`.
 * Trace variable changes
 * Showing source code when NoMethodError is thrown
 * Opening a shell when a particular error occurred
+* Showing the exact path of required library
 
 ## Tracing method and instance variables
 
@@ -102,6 +103,23 @@ rocket.launch
     #<Rocket:0(0)>> @reason
     => "Bugs invasion"
     #<Rocket:0(0)>>
+
+## Showing the require path
+```ruby
+irb(main):001:0> require 'defly'
+=> true
+irb(main):002:0> require 'shoulda', :verbose => true
+shoulda cannot be required
+LoadError: no such file to load -- shoulda
+  from /Users/eggegg/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:36:in `require'
+  from /Users/eggegg/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:36:in `require'
+  from /Users/eggegg/.rvm/gems/ruby-1.9.2-p290/gems/defly-0.2.0/lib/defly/require_path.rb:23:in `require'
+  from (irb):2
+  from /Users/eggegg/.rvm/rubies/ruby-1.9.2-p290/bin/irb:16:in `<main>'
+irb(main):003:0> require 'rdoc', :verbose => true
+Requiring /Users/eggegg/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/rdoc.rb
+=> true
+```
 
 ## Copyright
 
